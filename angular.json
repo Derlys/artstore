@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "artstore"
+    }
+  },
+  "defaultProject": "artstore",
+  "cli": {
+    "analytics": "eff2c0f3-2cbf-46d9-a28d-ff978c8d1fd4"
+  }
 }
