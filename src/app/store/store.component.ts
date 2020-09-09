@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-store',
@@ -6,11 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./store.component.scss'],
 })
 export class StoreComponent implements OnInit {
-  nombre: string;
+  @Input() nombre: string;
 
-  constructor() {
-    this.nombre = 'nombre por defecto';
-  }
+  constructor() {}
 
   ngOnInit(): void {}
 }
