@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'artstore'`, () => {
+  it(`should have as title 'artproduct'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('artstore');
+    expect(app.title).toEqual('artproduct');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('artstore app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('artproduct app is running!');
   });
 });
