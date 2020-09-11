@@ -43,6 +43,11 @@
   </div>
   <hr class="mb-5" />
   <div class="row">
-    <app-product *ngFor="let d of product" [product]="d"></app-product>
+    <app-product
+      *ngFor="let d of product"
+      [product]="d"
+      (clicked)="agregado($event)"
+    >
+    </app-product>
   </div>
 </div>
