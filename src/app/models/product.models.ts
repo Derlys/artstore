@@ -1,8 +1,10 @@
 export class Product {
-  nombre: string;
-  imgUrl: string;
-  constructor(n: string, u: string) {
-    this.nombre = n;
-    this.imgUrl = u;
+  private selected: boolean;
+  constructor(public nombre: string, public u: string) {}
+  isSelected(): boolean {
+    return this.selected;
+  }
+  setSelected(s: boolean): void {
+    this.selected = s;
   }
 }

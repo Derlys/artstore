@@ -14,9 +14,18 @@ export class ListproductComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
   guardar(nombre: string, url: string): boolean {
     this.product.push(new Product(nombre, url));
     console.log(this.product);
     return false;
+  }
+
+  agregado(d: Product): void {
+    // tslint:disable-next-line:only-arrow-functions
+    this.product.forEach(function (x) {
+      x.setSelected(false);
+    });
+    d.setSelected(true);
   }
 }

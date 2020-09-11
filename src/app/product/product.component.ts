@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, HostBinding } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  HostBinding,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { Product } from '../models/product.models';
 
 @Component({
@@ -9,8 +16,16 @@ import { Product } from '../models/product.models';
 export class ProductComponent implements OnInit {
   @Input() product: Product;
   @HostBinding('attr.class') cssClass = 'col-md-4';
+  @Output() clicked: EventEmitter<Product>;
 
-  constructor() {}
+  constructor() {
+    this.clicked = new EventEmitter();
+  }
 
   ngOnInit(): void {}
+
+  agregarcarrito(): boolean {
+    this.clicked.emit(this.product);
+    return false;
+  }
 }
