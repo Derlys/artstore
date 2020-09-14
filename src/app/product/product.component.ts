@@ -15,6 +15,7 @@ import { Product } from '../models/product.models';
 })
 export class ProductComponent implements OnInit {
   @Input() product: Product;
+  @Input('index') position: number;
   @HostBinding('attr.class') cssClass = 'col-md-4';
   @Output() clicked: EventEmitter<Product>;
 
