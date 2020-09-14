@@ -1,6 +1,9 @@
 export class Product {
   private selected: boolean;
-  constructor(public nombre: string, public u: string) {}
+  public disponible: string[];
+  constructor(public nombre: string, public u: string) {
+    this.disponible = ['talla', 'colores'];
+  }
   isSelected(): boolean {
     return this.selected;
   }
