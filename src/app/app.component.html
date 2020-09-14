@@ -1,8 +1,18 @@
 <div class="container content">
+  <div class="page-header">
+    <div class="container">
+      <h1>ruteo simple</h1>
+      <div class="navLinks">
+        <a [routerLink]="['/home']">Home</a>
+        <a [routerLink]="['/product']">Product</a>
+      </div>
+    </div>
+  </div>
   <div class="row">
     <h1>
       {{ title }}
     </h1>
   </div>
-  <app-listproduct></app-listproduct>
+
+  <router-outlet></router-outlet>
 </div>
