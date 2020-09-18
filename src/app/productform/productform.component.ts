@@ -1,7 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Product } from '../models/product.model';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { formatCurrency } from '@angular/common';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-productform',
@@ -15,7 +14,7 @@ export class ProductformComponent implements OnInit {
   constructor(fb: FormBuilder) {
     this.onItemAdded = new EventEmitter();
     this.fg = fb.group({
-      nombre: [''],
+      nombre: ['', Validators.required],
       url: [''],
     });
     this.fg.valueChanges.subscribe((form: any) => {
