@@ -1,31 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { Product } from '../models/product.models';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ProductsApiClient } from '../models/products-api-client.model';
+import { Product } from '../models/product.model';
 
 @Component({
   selector: 'app-listproduct',
   templateUrl: './listproduct.component.html',
   styleUrls: ['./listproduct.component.scss'],
+  providers: [ProductsApiClient],
 })
 export class ListproductComponent implements OnInit {
-  product: Product[];
+  @Output() onItemAdded: EventEmitter<Product>;
 
-  constructor() {
-    this.product = [];
+  constructor(public productsApiClient: ProductsApiClient) {
+    this.onItemAdded = new EventEmitter();
   }
 
   ngOnInit(): void {}
 
-  guardar(nombre: string, url: string): boolean {
-    this.product.push(new Product(nombre, url));
-    console.log(this.product);
-    return false;
+  add(d: Product) {
+    this.productsApiClient.add(d);
+    this.onItemAdded.emit(d);
   }
 
-  agregado(d: Product): void {
-    // tslint:disable-next-line:only-arrow-functions
-    this.product.forEach(function (x) {
-      x.setSelected(false);
-    });
-    d.setSelected(true);
+  elegido(e: Product): void {
+    this.productsApiClient.getAll().forEach((x) => x.setSelected(false));
+    {
+      e.setSelected(true);
+    }
   }
 }
