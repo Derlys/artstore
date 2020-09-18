@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';
 import { ListproductComponent } from './listproduct/listproduct.component';
 import { DetailproductComponent } from './detailproduct/detailproduct.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProductformComponent } from './productform/productform.component';
 
 const routes: Routes = [
   {
@@ -30,8 +32,15 @@ const routes: Routes = [
     ProductComponent,
     ListproductComponent,
     DetailproductComponent,
+    ProductformComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, RouterModule.forRoot(routes)],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    RouterModule.forRoot(routes),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
