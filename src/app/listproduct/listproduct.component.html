@@ -14,13 +14,20 @@
     </div>
   </div>
   <hr class="mb-5" />
-  <div class="row">
+  <div class="row row-flex">
     <app-product
       *ngFor="let d of productsApiClient.getAll(); let i = index"
       [product]="d"
       [index]="i + 1"
-      (clicked)="add($event)"
+      (clicked)="elegido($event)"
     >
     </app-product>
+  </div>
+  <hr class="mb-5" />
+  <div class="row row-flex">
+    <h5>Actividad</h5>
+    <ul>
+      <li *ngFor="let u of updates">{{ u }}</li>
+    </ul>
   </div>
 </div>

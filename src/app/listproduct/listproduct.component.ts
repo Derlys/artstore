@@ -10,9 +10,16 @@ import { Product } from '../models/product.model';
 })
 export class ListproductComponent implements OnInit {
   @Output() onItemAdded: EventEmitter<Product>;
+  updates: string[];
 
   constructor(public productsApiClient: ProductsApiClient) {
     this.onItemAdded = new EventEmitter();
+    this.updates = [];
+    this.productsApiClient.subscribeOnChange((d: Product) => {
+      if (d != null) {
+        this.updates.push('se ha elegido a' + d.nombre);
+      }
+    });
   }
 
   ngOnInit(): void {}
@@ -23,7 +30,7 @@ export class ListproductComponent implements OnInit {
   }
 
   elegido(e: Product): void {
-    this.productsApiClient.getAll().forEach((x) => x.setSelected(false));
+    this.productsApiClient.elegir(e);
     {
       e.setSelected(true);
     }
