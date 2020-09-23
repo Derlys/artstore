@@ -7,6 +7,16 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { fromEvent } from 'rxjs';
+import {
+  map,
+  filter,
+  debounceTime,
+  distinctUntilChanged,
+  switchMap,
+  tap,
+} from 'rxjs/operators';
+import { ajax } from 'rxjs/ajax';
 
 @Component({
   selector: 'app-productform',
@@ -17,6 +27,7 @@ export class ProductformComponent implements OnInit {
   @Output() onItemAdded: EventEmitter<Product>;
   fg: FormGroup;
   minLongitud = 3;
+  searchResult: string[];
 
   constructor(fb: FormBuilder) {
     this.onItemAdded = new EventEmitter();
@@ -36,7 +47,23 @@ export class ProductformComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    const elemNombre = <HTMLInputElement>document.getElementById('nombre');
+    fromEvent(elemNombre, 'input')
+      .pipe(
+        tap((e) => {
+          console.log(e);
+        }),
+        map((e: KeyboardEvent) => (e.target as HTMLInputElement).value),
+        filter((text) => text.length > 2),
+        debounceTime(200),
+        distinctUntilChanged(),
+        switchMap(() => ajax('/assets/datos.json'))
+      )
+      .subscribe((ajaxResponse) => {
+        this.searchResult = ajaxResponse.response;
+      });
+  }
 
   guardar(nombre: string, url: string): boolean {
     const d = new Product(nombre, url);
