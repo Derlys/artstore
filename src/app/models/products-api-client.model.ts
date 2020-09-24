@@ -1,31 +1,20 @@
 import { Product } from './product.model';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { AppState } from '../app.module';
+import { Store } from '@ngrx/store';
+import {
+  ElegidoFavoritoAction,
+  NuevoProductAction,
+} from './product-state.model';
 
 @Injectable()
 export class ProductsApiClient {
-  products: Product[];
-  current: Subject<Product> = new BehaviorSubject<Product>(null);
-  constructor() {
-    this.products = [];
-  }
+  constructor(private store: Store<AppState>) {}
   add(d: Product) {
-    this.products.push(d);
+    this.store.dispatch(new NuevoProductAction(d));
   }
-  getAll(): Product[] {
-    return this.products;
-  }
-  getById(id: string): Product {
-    return this.products.filter((d) => {
-      return d.id.toString() === id;
-    })[0];
-  }
+
   elegir(d: Product) {
-    this.products.forEach((x) => x.setSelected(false));
-    d.setSelected(true);
-    this.current.next(d);
-  }
-  subscribeOnChange(fn) {
-    this.current.subscribe(fn);
+    this.store.dispatch(new ElegidoFavoritoAction(d));
   }
 }
