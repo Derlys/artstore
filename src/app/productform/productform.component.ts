@@ -42,18 +42,13 @@ export class ProductformComponent implements OnInit {
       ],
       url: [''],
     });
-    this.fg.valueChanges.subscribe((form: any) => {
-      console.log('cambio el formulario:  form');
-    });
+    this.fg.valueChanges.subscribe((form: any) => {});
   }
 
   ngOnInit() {
     const elemNombre = <HTMLInputElement>document.getElementById('nombre');
     fromEvent(elemNombre, 'input')
       .pipe(
-        tap((e) => {
-          console.log(e);
-        }),
         map((e: KeyboardEvent) => (e.target as HTMLInputElement).value),
         filter((text) => text.length > 2),
         debounceTime(200),

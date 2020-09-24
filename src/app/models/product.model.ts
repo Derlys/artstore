@@ -12,6 +12,7 @@ export class Product {
     return this.selected;
   }
   setSelected(s: boolean): void {
+    console.log(s);
     this.selected = s;
   }
 }
