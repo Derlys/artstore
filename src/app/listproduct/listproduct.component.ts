@@ -1,6 +1,12 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProductsApiClient } from '../models/products-api-client.model';
 import { Product } from '../models/product.model';
+import { Store } from '@ngrx/store';
+import { AppState } from '../app.module';
+import {
+  ElegidoFavoritoAction,
+  NuevoProductAction,
+} from '../models/product-state.model';
 
 @Component({
   selector: 'app-listproduct',
@@ -12,14 +18,19 @@ export class ListproductComponent implements OnInit {
   @Output() onItemAdded: EventEmitter<Product>;
   updates: string[];
 
-  constructor(public productsApiClient: ProductsApiClient) {
+  constructor(
+    public productsApiClient: ProductsApiClient,
+    private store: Store<AppState>
+  ) {
     this.onItemAdded = new EventEmitter();
     this.updates = [];
-    this.productsApiClient.subscribeOnChange((d: Product) => {
-      if (d != null) {
-        this.updates.push('se ha elegido a' + d.nombre);
-      }
-    });
+    this.store
+      .select((state) => state.product.favorito)
+      .subscribe((d) => {
+        if (d != null) {
+          this.updates.push('se ha elegido a' + d.nombre);
+        }
+      });
   }
 
   ngOnInit(): void {}
@@ -27,10 +38,12 @@ export class ListproductComponent implements OnInit {
   add(d: Product) {
     this.productsApiClient.add(d);
     this.onItemAdded.emit(d);
+    this.store.dispatch(new NuevoProductAction(d));
   }
 
   elegido(e: Product): void {
     this.productsApiClient.elegir(e);
+    this.store.dispatch(new ElegidoFavoritoAction(e));
     {
       e.setSelected(true);
     }
