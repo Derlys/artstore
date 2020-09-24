@@ -5,7 +5,11 @@ export class Product {
   public disponible: string[];
   id = uuid();
 
-  constructor(public nombre: string, public u: string) {
+  constructor(
+    public nombre: string,
+    public u: string,
+    public votes: number = 0
+  ) {
     this.disponible = ['talla', 'colores'];
   }
   isSelected(): boolean {
@@ -14,5 +18,13 @@ export class Product {
   setSelected(s: boolean): void {
     console.log(s);
     this.selected = s;
+  }
+
+  voteUp() {
+    this.votes++;
+  }
+
+  voteDown() {
+    this.votes--;
   }
 }

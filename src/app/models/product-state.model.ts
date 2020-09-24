@@ -24,10 +24,20 @@ export const initializeProductState = function () {
 export enum ProductActionTypes {
   NUEVO_PRODUCT = '[Product] Nuevo',
   ELEGIDO_FAVORITO = '[Product] Favorito',
+  VOTE_UP = '[Product] Vote Up',
+  VOTE_DOWN = '[Product] Vote Down',
 }
 
 export class NuevoProductAction implements Action {
   type = ProductActionTypes.NUEVO_PRODUCT;
+  constructor(public product: Product) {}
+}
+export class VoteUpAction implements Action {
+  type = ProductActionTypes.VOTE_UP;
+  constructor(public product: Product) {}
+}
+export class VoteDownAction implements Action {
+  type = ProductActionTypes.VOTE_DOWN;
   constructor(public product: Product) {}
 }
 
@@ -36,7 +46,11 @@ export class ElegidoFavoritoAction implements Action {
   constructor(public product: Product) {}
 }
 
-export type ProductActions = NuevoProductAction | ElegidoFavoritoAction;
+export type ProductActions =
+  | NuevoProductAction
+  | ElegidoFavoritoAction
+  | VoteUpAction
+  | VoteDownAction;
 
 // REDUCERS
 export function reducerProduct(
@@ -58,6 +72,22 @@ export function reducerProduct(
       return {
         ...state,
         favorito: fav,
+      };
+    }
+    case ProductActionTypes.VOTE_UP: {
+      state.items.forEach((x) => x.setSelected(false));
+      const d: Product = (action as VoteUpAction).product;
+      d.voteUp();
+      return {
+        ...state,
+      };
+    }
+    case ProductActionTypes.VOTE_DOWN: {
+      state.items.forEach((x) => x.setSelected(false));
+      const d: Product = (action as VoteDownAction).product;
+      d.voteDown();
+      return {
+        ...state,
       };
     }
   }

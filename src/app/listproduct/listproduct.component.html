@@ -16,10 +16,10 @@
   <hr class="mb-5" />
   <div class="row row-flex">
     <app-product
-      *ngFor="let d of productsApiClient.getAll(); let i = index"
+      *ngFor="let d of all; let i = index"
       [product]="d"
       [index]="i + 1"
-      (clicked)="elegido($event)"
+      (onClicked)="elegido(d)"
     >
     </app-product>
   </div>
