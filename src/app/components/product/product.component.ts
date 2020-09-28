@@ -6,10 +6,10 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { Product } from '../models/product.model';
-import { AppState } from '../app.module';
+import { Product } from '../../models/product.model';
+import { AppState } from '../../app.module';
 import { Store } from '@ngrx/store';
-import { VoteDownAction, VoteUpAction } from '../models/product-state.model';
+import { VoteDownAction, VoteUpAction } from '../../models/product-state.model';
 
 @Component({
   selector: 'app-product',

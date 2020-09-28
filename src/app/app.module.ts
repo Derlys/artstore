@@ -7,17 +7,21 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProductComponent } from './product/product.component';
-import { ListproductComponent } from './listproduct/listproduct.component';
-import { DetailproductComponent } from './detailproduct/detailproduct.component';
+import { ProductComponent } from './components/product/product.component';
+import { ListproductComponent } from './components/listproduct/listproduct.component';
+import { DetailproductComponent } from './components/detailproduct/detailproduct.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ProductformComponent } from './productform/productform.component';
+import { ProductformComponent } from './components/productform/productform.component';
 import {
   ProductState,
   reducerProduct,
   initializeProductState,
   ProductEffects,
 } from './models/product-state.model';
+import { LoginComponent } from './components/login/login/login.component';
+import { ProtectedComponent } from './components/protected/protected/protected.component';
+import { UsuarioLogueadoGuard } from './guards/usuario-logueado/usuario-logueado.guard';
+import { AuthService } from './services/auth.service';
 
 const routes: Routes = [
   {
@@ -30,8 +34,17 @@ const routes: Routes = [
     component: ListproductComponent,
   },
   {
-    path: 'product',
+    path: 'product/:id',
     component: DetailproductComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'protected',
+    component: ProtectedComponent,
+    canActivate: [UsuarioLogueadoGuard],
   },
 ];
 // redux init
@@ -54,6 +67,8 @@ const reducersInitialState = {
     ListproductComponent,
     DetailproductComponent,
     ProductformComponent,
+    LoginComponent,
+    ProtectedComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +80,7 @@ const reducersInitialState = {
     EffectsModule.forRoot([ProductEffects]),
     StoreDevtoolsModule.instrument(),
   ],
-  providers: [],
+  providers: [AuthService, UsuarioLogueadoGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
