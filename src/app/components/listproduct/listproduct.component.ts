@@ -1,12 +1,12 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ProductsApiClient } from '../models/products-api-client.model';
-import { Product } from '../models/product.model';
+import { ProductsApiClient } from '../../models/products-api-client.model';
+import { Product } from '../../models/product.model';
 import { Store } from '@ngrx/store';
-import { AppState } from '../app.module';
+import { AppState } from '../../app.module';
 import {
   ElegidoFavoritoAction,
   NuevoProductAction,
-} from '../models/product-state.model';
+} from '../../models/product-state.model';
 
 @Component({
   selector: 'app-listproduct',
