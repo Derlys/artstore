@@ -22,7 +22,32 @@ import { LoginComponent } from './components/login/login/login.component';
 import { ProtectedComponent } from './components/protected/protected/protected.component';
 import { UsuarioLogueadoGuard } from './guards/usuario-logueado/usuario-logueado.guard';
 import { AuthService } from './services/auth.service';
+import { CamisetasComponent } from './components/recuerdos/camisetas/camisetas.component';
+import { CamisetasMainComponent } from './components/recuerdos/camisetas-main/camisetas-main.component';
+import { CamisetasMasInfoComponent } from './components/recuerdos/camisetas-mas-info/camisetas-mas-info.component';
+import { CamisetasDetailComponent } from './components/recuerdos/camisetas-detail/camisetas-detail.component';
+import { CommentsModule } from './comments/comments.module';
 
+export const childrenRoutesRecuerdos: Routes = [
+  {
+    path: '',
+    redirectTo: 'main',
+    pathMatch: 'full',
+  },
+
+  {
+    path: 'main',
+    component: CamisetasMainComponent,
+  },
+  {
+    path: 'mas-info',
+    component: CamisetasMasInfoComponent,
+  },
+  {
+    path: ':id',
+    component: CamisetasDetailComponent,
+  },
+];
 const routes: Routes = [
   {
     path: '',
@@ -45,6 +70,12 @@ const routes: Routes = [
     path: 'protected',
     component: ProtectedComponent,
     canActivate: [UsuarioLogueadoGuard],
+  },
+  {
+    path: 'recuerdos',
+    component: CamisetasComponent,
+    canActivate: [UsuarioLogueadoGuard],
+    children: childrenRoutesRecuerdos,
   },
 ];
 // redux init
@@ -69,6 +100,10 @@ const reducersInitialState = {
     ProductformComponent,
     LoginComponent,
     ProtectedComponent,
+    CamisetasComponent,
+    CamisetasMainComponent,
+    CamisetasMasInfoComponent,
+    CamisetasDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,6 +114,7 @@ const reducersInitialState = {
     NgRxStoreModule.forRoot(reducers, { initialState: reducersInitialState }),
     EffectsModule.forRoot([ProductEffects]),
     StoreDevtoolsModule.instrument(),
+    CommentsModule,
   ],
   providers: [AuthService, UsuarioLogueadoGuard],
   bootstrap: [AppComponent],
