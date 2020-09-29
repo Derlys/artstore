@@ -7,7 +7,7 @@ import { CommentsApiClientService } from '../comments-api-client.service';
   styleUrls: ['./comments-list.component.scss'],
 })
 export class CommentsListComponent implements OnInit {
-  constructor(private api: CommentsApiClientService) {}
+  constructor() {}
 
   ngOnInit(): void {}
 }
