@@ -3,10 +3,6 @@ import { ProductsApiClient } from '../../models/products-api-client.model';
 import { Product } from '../../models/product.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../app.module';
-import {
-  ElegidoFavoritoAction,
-  NuevoProductAction,
-} from '../../models/product-state.model';
 
 @Component({
   selector: 'app-listproduct',
