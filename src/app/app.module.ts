@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { InjectionToken, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { StoreModule as NgRxStoreModule, ActionReducerMap } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -27,6 +27,16 @@ import { CamisetasMainComponent } from './components/recuerdos/camisetas-main/ca
 import { CamisetasMasInfoComponent } from './components/recuerdos/camisetas-mas-info/camisetas-mas-info.component';
 import { CamisetasDetailComponent } from './components/recuerdos/camisetas-detail/camisetas-detail.component';
 import { CommentsModule } from './comments/comments.module';
+
+// app config
+export interface AppConfig {
+  apiEndpoint: String;
+}
+const APP_CONFIG_VALUE: AppConfig = {
+  apiEndpoint: 'http://localhost:3000',
+};
+export const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
+//fin  app config
 
 export const childrenRoutesRecuerdos: Routes = [
   {
@@ -116,7 +126,14 @@ const reducersInitialState = {
     StoreDevtoolsModule.instrument(),
     CommentsModule,
   ],
-  providers: [AuthService, UsuarioLogueadoGuard],
+  providers: [
+    AuthService,
+    UsuarioLogueadoGuard,
+    {
+      provide: APP_CONFIG,
+      useValue: APP_CONFIG_VALUE,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

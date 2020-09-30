@@ -1,4 +1,11 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  OnInit,
+  Output,
+  forwardRef,
+} from '@angular/core';
 import { Product } from '../../models/product.model';
 import {
   FormBuilder,
@@ -14,9 +21,9 @@ import {
   debounceTime,
   distinctUntilChanged,
   switchMap,
-  tap,
 } from 'rxjs/operators';
 import { ajax } from 'rxjs/ajax';
+import { APP_CONFIG, AppConfig } from '../../app.module';
 
 @Component({
   selector: 'app-productform',
@@ -29,7 +36,10 @@ export class ProductformComponent implements OnInit {
   minLongitud = 3;
   searchResult: string[];
 
-  constructor(fb: FormBuilder) {
+  constructor(
+    fb: FormBuilder,
+    @Inject(forwardRef(() => APP_CONFIG)) private config: AppConfig
+  ) {
     this.onItemAdded = new EventEmitter();
     this.fg = fb.group({
       nombre: [
@@ -53,11 +63,11 @@ export class ProductformComponent implements OnInit {
         filter((text) => text.length > 2),
         debounceTime(200),
         distinctUntilChanged(),
-        switchMap(() => ajax('/assets/datos.json'))
+        switchMap((text: string) =>
+          ajax(this.config.apiEndpoint + '/ciudades?q=' + text)
+        )
       )
-      .subscribe((ajaxResponse) => {
-        this.searchResult = ajaxResponse.response;
-      });
+      .subscribe((ajaxResponse) => (this.searchResult = ajaxResponse.response));
   }
 
   guardar(nombre: string, url: string): boolean {
