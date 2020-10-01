@@ -1,8 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { InjectionToken, NgModule } from '@angular/core';
+import {
+  APP_INITIALIZER,
+  InjectionToken,
+  NgModule,
+  Injectable,
+} from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { StoreModule as NgRxStoreModule, ActionReducerMap } from '@ngrx/store';
+import {
+  StoreModule as NgRxStoreModule,
+  ActionReducerMap,
+  Store,
+} from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import {
+  HttpClient,
+  HttpClientModule,
+  HttpHeaders,
+  HttpRequest,
+} from '@angular/common/http';
 
 import { EffectsModule } from '@ngrx/effects';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +32,7 @@ import {
   reducerProduct,
   initializeProductState,
   ProductEffects,
+  InitMyDataAction,
 } from './models/product-state.model';
 import { LoginComponent } from './components/login/login/login.component';
 import { ProtectedComponent } from './components/protected/protected/protected.component';
@@ -38,6 +54,7 @@ const APP_CONFIG_VALUE: AppConfig = {
 export const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
 //fin  app config
 
+// routing
 export const childrenRoutesRecuerdos: Routes = [
   {
     path: '',
@@ -88,6 +105,7 @@ const routes: Routes = [
     children: childrenRoutesRecuerdos,
   },
 ];
+// fin routing
 // redux init
 export interface AppState {
   product: ProductState;
@@ -100,6 +118,25 @@ const reducersInitialState = {
   product: initializeProductState(),
 };
 // redux fin init
+
+// app init
+export function init_app(appLoadService: AppLoadService): () => Promise<any> {
+  return () => appLoadService.initializeProductState();
+}
+@Injectable()
+class AppLoadService {
+  constructor(private store: Store<AppState>, private http: HttpClient) {}
+  async initializeProductState(): Promise<any> {
+    const headers: HttpHeaders = new HttpHeaders({
+      'X-API-TOKEN': 'token-seguridad',
+    });
+    const req = new HttpRequest('GET', APP_CONFIG_VALUE.apiEndpoint + '/my', {
+      headers: headers,
+    });
+    const response: any = await this.http.request(req).toPromise();
+    this.store.dispatch(new InitMyDataAction(response.body));
+  }
+}
 
 @NgModule({
   declarations: [
@@ -125,6 +162,7 @@ const reducersInitialState = {
     EffectsModule.forRoot([ProductEffects]),
     StoreDevtoolsModule.instrument(),
     CommentsModule,
+    HttpClientModule,
   ],
   providers: [
     AuthService,
@@ -132,6 +170,13 @@ const reducersInitialState = {
     {
       provide: APP_CONFIG,
       useValue: APP_CONFIG_VALUE,
+    },
+    AppLoadService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: init_app,
+      deps: [AppLoadService],
+      multi: true,
     },
   ],
   bootstrap: [AppComponent],
