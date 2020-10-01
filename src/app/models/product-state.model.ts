@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Action } from '@ngrx/store';
-import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Product } from './product.model';
+import { Action } from '@ngrx/store';
+import { Injectable } from '@angular/core';
+import { Actions, Effect, ofType } from '@ngrx/effects';
 
 // ESTADO
 export interface ProductState {
@@ -12,13 +12,13 @@ export interface ProductState {
   favorito: Product;
 }
 
-export const initializeProductState = function () {
+export function initializeProductState() {
   return {
     items: [],
     loading: false,
     favorito: null,
   };
-};
+}
 
 // ACCIONES
 export enum ProductActionTypes {
@@ -26,6 +26,7 @@ export enum ProductActionTypes {
   ELEGIDO_FAVORITO = '[Product] Favorito',
   VOTE_UP = '[Product] Vote Up',
   VOTE_DOWN = '[Product] Vote Down',
+  INIT_MY_DATA = '[Product] Init My Data',
 }
 
 export class NuevoProductAction implements Action {
@@ -45,12 +46,17 @@ export class ElegidoFavoritoAction implements Action {
   type = ProductActionTypes.ELEGIDO_FAVORITO;
   constructor(public product: Product) {}
 }
+export class InitMyDataAction implements Action {
+  type = ProductActionTypes.INIT_MY_DATA;
+  constructor(public productos: string[]) {}
+}
 
 export type ProductActions =
   | NuevoProductAction
   | ElegidoFavoritoAction
   | VoteUpAction
-  | VoteDownAction;
+  | VoteDownAction
+  | InitMyDataAction;
 
 // REDUCERS
 export function reducerProduct(
@@ -59,6 +65,13 @@ export function reducerProduct(
 ): ProductState {
   console.log(action);
   switch (action.type) {
+    case ProductActionTypes.INIT_MY_DATA: {
+      const productos: string[] = (action as InitMyDataAction).productos;
+      return {
+        ...state,
+        items: productos.map((d) => new Product(d, '')),
+      };
+    }
     case ProductActionTypes.NUEVO_PRODUCT: {
       return {
         ...state,

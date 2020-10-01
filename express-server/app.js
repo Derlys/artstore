@@ -26,6 +26,6 @@ let misProducts = [];
 app.get("/my", (req, res, next) => res.json(misProducts));
 app.post("/my", (req, res, next) => {
   console.log(req.body);
-  misProducts = req.body;
+  misProducts.push(req.body.nuevo);
   res.json(misProducts);
 });

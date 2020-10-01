@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ProductsApiClient } from '../../models/products-api-client.model';
+import { ProductApiClient } from '../../models/products-api-client.model';
 import { Product } from '../../models/product.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../app.module';
@@ -8,7 +8,7 @@ import { AppState } from '../../app.module';
   selector: 'app-listproduct',
   templateUrl: './listproduct.component.html',
   styleUrls: ['./listproduct.component.scss'],
-  providers: [ProductsApiClient],
+  providers: [ProductApiClient],
 })
 export class ListproductComponent implements OnInit {
   @Output() onItemAdded: EventEmitter<Product>;
@@ -16,7 +16,7 @@ export class ListproductComponent implements OnInit {
   all;
 
   constructor(
-    public productsApiClient: ProductsApiClient,
+    public productsApiClient: ProductApiClient,
     private store: Store<AppState>
   ) {
     this.onItemAdded = new EventEmitter();
