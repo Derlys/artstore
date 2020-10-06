@@ -43,6 +43,7 @@ import { CamisetasMainComponent } from './components/recuerdos/camisetas-main/ca
 import { CamisetasMasInfoComponent } from './components/recuerdos/camisetas-mas-info/camisetas-mas-info.component';
 import { CamisetasDetailComponent } from './components/recuerdos/camisetas-detail/camisetas-detail.component';
 import { CommentsModule } from './comments/comments.module';
+import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 
 // app config
 export interface AppConfig {
@@ -163,6 +164,12 @@ class AppLoadService {
     StoreDevtoolsModule.instrument(),
     CommentsModule,
     HttpClientModule,
+    NgxMapboxGLModule.withConfig({
+      accessToken:
+        'pk.eyJ1IjoiZGVybHlzIiwiYSI6ImNrZnlpOWVvcjAydDcyc28xYnp3MWlhNXgifQ.dm2hkZ6WjGBW7hNA5RnA4g', // Optional, can also be set per map (accessToken input of mgl-map)
+      geocoderAccessToken:
+        'pk.eyJ1IjoiZGVybHlzIiwiYSI6ImNrZnlpOWVvcjAydDcyc28xYnp3MWlhNXgifQ.dm2hkZ6WjGBW7hNA5RnA4g', // Optional, specify if different from the map access token, can also be set per mgl-geocoder (accessToken input of mgl-geocoder)
+    }),
   ],
   providers: [
     AuthService,
