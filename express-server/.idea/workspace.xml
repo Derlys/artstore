@@ -33,15 +33,8 @@
     <list default="true" id="9f75fdf4-6319-4df5-8072-64e3ef0d4f0c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/components/detailproduct/detailproduct.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/components/detailproduct/detailproduct.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/components/detailproduct/detailproduct.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/components/detailproduct/detailproduct.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/components/product/product.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/components/product/product.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/models/product-state.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/models/product-state.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/polyfills.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/polyfills.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../src/styles.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/components/product/product.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/components/product/product.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,6 +85,7 @@
       <workItem from="1601480557419" duration="4119000" />
       <workItem from="1601569115012" duration="1794000" />
       <workItem from="1601914125501" duration="1130000" />
+      <workItem from="1602089015798" duration="646000" />
     </task>
     <servers />
   </component>
