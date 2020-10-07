@@ -34,6 +34,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/components/product/product.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/components/product/product.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/app/components/product/product.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/components/product/product.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
