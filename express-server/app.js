@@ -25,7 +25,7 @@ app.get("/ciudades", (req, res, next) =>
 
 let misProducts = [];
 app.get("/my", (req, res, next) => res.json(misProducts));
-req.body.nuevo = undefined;
+
 app.post("/my", (req, res, next) => {
   console.log(req.body);
   misProducts.push(req.body.nuevo);
