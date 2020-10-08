@@ -45,6 +45,7 @@ import { CamisetasDetailComponent } from './components/recuerdos/camisetas-detai
 import { CommentsModule } from './comments/comments.module';
 import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EspiameDirective } from './espiame.directive';
 
 // app config
 export interface AppConfig {
@@ -153,6 +154,7 @@ class AppLoadService {
     CamisetasMainComponent,
     CamisetasMasInfoComponent,
     CamisetasDetailComponent,
+    EspiameDirective,
   ],
   imports: [
     BrowserModule,
