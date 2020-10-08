@@ -20,14 +20,29 @@
       </li>
     </ul>
     <div>
-      <a href="#" (click)="(voteUp)">
+      <a
+        href="#"
+        (click)="(voteUp)"
+        appTrackearClick
+        data-trackear-tags="destino_vote_up lista_destinos_item"
+      >
         <i class="material-icons md -18">thumbs_up</i> </a
-      ><a href="#" (click)="(voteDown)">
+      ><a
+        href="#"
+        (click)="(voteDown)"
+        appTrackearClick
+        data-trackear-tags="destino_vote_down lista_destinos_item"
+      >
         <i class="material-icons md -18">thumbs_down</i>
       </a>
       {{ product.votes }}
     </div>
-    <a href="#" class="btn-card" (click)="agregarcarrito()"
+    <a
+      href="#"
+      class="btn-card"
+      (click)="agregarcarrito()"
+      appTrackearClick
+      data-trackear-tags="destino_elegir_preferido lista_destinos_item"
       >Añadir al carrito</a
     >
     <span *ngIf="product.isSelected()">
