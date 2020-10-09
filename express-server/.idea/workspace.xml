@@ -31,9 +31,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f75fdf4-6319-4df5-8072-64e3ef0d4f0c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../src/app/models/product-state.model.spec.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/components/product/product.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/components/product/product.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/comments/comments-api-client.service.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/comments/comments-detail/comments-detail.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/comments/comments-list/comments-list.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/components/detailproduct/detailproduct.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/components/listproduct/listproduct.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/components/login/login/login.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/components/product/product.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/components/productform/productform.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/components/protected/protected/protected.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/components/recuerdos/camisetas-detail/camisetas-detail.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/components/recuerdos/camisetas-main/camisetas-main.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/components/recuerdos/camisetas-mas-info/camisetas-mas-info.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/components/recuerdos/camisetas/camisetas.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/espiame.directive.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/guards/usuario-logueado/usuario-logueado.guard.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/services/auth.service.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/trackear-click.directive.spec.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
